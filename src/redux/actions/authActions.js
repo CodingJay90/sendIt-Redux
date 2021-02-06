@@ -6,7 +6,7 @@ import {
 } from "./actionTypes";
 
 export const registerUser = (user) => (dispatch) => {
-  dispatch(setItemsLoading());
+  //   dispatch(setItemsLoading());
   fetch("https://sendit-parcel.herokuapp.com/auth/register", {
     method: "POST",
     body: JSON.stringify(user),
@@ -17,11 +17,11 @@ export const registerUser = (user) => (dispatch) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      //   if (data.success) {
-      dispatch({ type: REGISTER_USER, payload: data });
-      //   } else {
-      //     dispatch({ type: AUTH_ERROR, paylaod: data });
-      //   }
+      if (!data.success === false) {
+        dispatch({ type: REGISTER_USER, payload: data });
+      } else {
+        dispatch({ type: AUTH_ERROR, payload: data });
+      }
     })
     .catch((err) => console.log(err));
 };

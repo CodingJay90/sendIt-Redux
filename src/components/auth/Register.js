@@ -4,11 +4,12 @@ import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Auth.css";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { registerUser } from "../../redux/actions/authActions";
 
 const Register = (props) => {
   const { registerUser } = props;
+  const dispatch = useDispatch();
   console.log(props);
   toast.configure();
 
