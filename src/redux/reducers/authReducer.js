@@ -43,6 +43,7 @@ export default function (state = initialState, action) {
         msg: action.payload.msg,
         success: true,
         msg: action.payload.msg,
+        isLoading: false,
       };
     case AUTH_ERROR:
       return {

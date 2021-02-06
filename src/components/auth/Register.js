@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,9 +8,9 @@ import { connect, useDispatch } from "react-redux";
 import { registerUser } from "../../redux/actions/authActions";
 
 const Register = (props) => {
-  const { registerUser } = props;
+  const { registerUser, errors } = props;
   const dispatch = useDispatch();
-  console.log(props);
+  console.log(errors);
   toast.configure();
 
   const [values, setValues] = useState({
@@ -38,10 +38,21 @@ const Register = (props) => {
     registerUser(body);
   };
 
+  //   useEffect(() => {
+  //     errors &&
+  //       errors.map((error) => {
+  //         return toast.error(error.msg);
+  //       });
+  //   }, [errors]);
+
   return (
     <div>
       <div className="form">
         <h1>Sign Up</h1>
+        {errors &&
+          errors.map((error) => {
+            toast.error(error.msg);
+          })}
         <div className="layer">
           <form onSubmit={handleSubmit}>
             <label htmlFor="first_name">First Name</label>
@@ -99,6 +110,7 @@ function mapStateToProps(state) {
     success: state.auth.success,
     userInfo: state.auth.userInfo,
     msg: state.auth.msg,
+    errors: state.auth.errors,
   };
 }
 
