@@ -31,7 +31,7 @@ form input:focus {
   outline-color: hsla(0, 0%, 30%, 0.863);
 }
 
-button {
+button.submit-btn {
   padding: 1em;
   border: blue;
   cursor: pointer;
@@ -41,7 +41,7 @@ button {
   background: linear-gradient(90deg, #3f33e7, #15d8f1);
 }
 
-button:hover {
+button.submit-btn:hover {
   filter: brightness(130%);
 }
 
@@ -87,14 +87,14 @@ label {
   letter-spacing: 3px;
 }
 
-.layer form button {
+.layer form button.submit-btn {
   width: 50%;
   transition: 1s cubic-bezier(0.23, 1, 0.32, 1);
   display: block;
   margin: 1rem auto;
 }
 
-.layer form button:hover {
+.layer form button.submit-btn:hover {
   width: 100%;
   filter: brightness(70%);
 }
@@ -110,4 +110,8 @@ label {
 
 .layer p a:hover {
   text-decoration: underline;
+}
+
+isLoading {
+  cursor: not-allowed;
 }

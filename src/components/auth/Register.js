@@ -8,7 +8,7 @@ import { connect, useDispatch } from "react-redux";
 import { registerUser } from "../../redux/actions/authActions";
 
 const Register = (props) => {
-  const { registerUser, errors } = props;
+  const { registerUser, errors, isLoading } = props;
   const dispatch = useDispatch();
   console.log(errors);
   toast.configure();
@@ -88,7 +88,7 @@ const Register = (props) => {
               placeholder="Enter password"
               onChange={onChange}
             />
-            <button>Submit</button>
+            <button className="submit-btn">Submit</button>
             <p>
               Already had an account ? <Link to="/login">Log in</Link>
             </p>

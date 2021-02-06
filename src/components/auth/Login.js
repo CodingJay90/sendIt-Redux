@@ -5,10 +5,11 @@ import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginUser } from "../../redux/actions/authActions";
+import LoadingButton from "../common/LoadingButton";
 import "./Auth.css";
 
 const Login = (props) => {
-  const { loginUser, msg } = props;
+  const { loginUser, msg, isLoading } = props;
   toast.configure();
 
   const [values, setValues] = useState({
@@ -52,7 +53,13 @@ const Login = (props) => {
               placeholder="Enter password"
               onChange={onChange}
             />
-            <button>Submit</button>
+            {/* <LoadingButton /> */}
+            {isLoading ? (
+              <LoadingButton />
+            ) : (
+              <button className="submit-btn">Submit</button>
+            )}
+
             <p>
               Do not have an account ? <Link to="/register">Sign Up</Link>
             </p>
