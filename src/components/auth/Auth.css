@@ -105,6 +105,7 @@ label {
 
 .layer p a {
   color: #15d8f1;
+  filter: brightness(70%);
 }
 
 .layer p a:hover {

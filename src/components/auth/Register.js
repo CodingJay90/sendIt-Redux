@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { registerUser } from "../../redux/actions/authActions";
 
 const Register = (props) => {
+  const { registerUser } = props;
   console.log(props);
   toast.configure();
 
@@ -18,13 +19,22 @@ const Register = (props) => {
     last_name: "",
     phone_no: "",
   });
+
+  const body = {
+    first_name: values.first_name,
+    last_name: values.last_name,
+    email: values.email,
+    phone_no: values.phone_no,
+    password: values.password,
+  };
   const history = useHistory();
   const onChange = (e) =>
     setValues({ ...values, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
+    console.log(values);
     e.preventDefault();
-    registerUser(values);
+    registerUser(body);
   };
 
   return (

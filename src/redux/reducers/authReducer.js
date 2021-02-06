@@ -1,4 +1,5 @@
 import {
+  AUTH_ERROR,
   FETCH_LOADING,
   LOGIN_USER,
   REGISTER_USER,
@@ -12,6 +13,7 @@ const initialState = {
   success: null,
   userInfo: null,
   msg: "",
+  errors: null,
 };
 
 export default function (state = initialState, action) {
@@ -23,6 +25,7 @@ export default function (state = initialState, action) {
       };
     case REGISTER_USER:
     case LOGIN_USER:
+      localStorage.setItem("token", action.paylaod.token);
       return {
         ...state,
         isAuthenticated: true,
@@ -32,6 +35,12 @@ export default function (state = initialState, action) {
         userInfo: action.payload.user,
         isLoading: false,
         msg: action.payload.msg,
+      };
+    case AUTH_ERROR:
+      return {
+        ...state,
+        errors: action.payload.errors,
+        success: false,
       };
 
     default:
