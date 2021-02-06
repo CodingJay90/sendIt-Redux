@@ -1,10 +1,9 @@
-.container {
+/* .container {
   width: 85%;
   margin: auto;
 }
 
 .orders-layer {
-  background: url(../../images/photo-1585047668151-b281b0c89c97.webp);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -28,8 +27,6 @@
 }
 
 .orders div #cancel-btn {
-  /* position: absolute;
-  right: 3%; */
   border: none;
   padding: 0.5rem;
   border-radius: 3px;
@@ -126,4 +123,4 @@
     position: static;
     margin-left: 2rem;
   }
-}
+} */

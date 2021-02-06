@@ -1,5 +1,25 @@
-const initialState = null;
+import { LOAD_PARCELS, PARCELS_LOADING } from "../actions/actionTypes";
+
+const initialState = {
+  parcels: null,
+  isLoading: false,
+};
 
 export default function (state = initialState, action) {
-  return state;
+  switch (action.type) {
+    case PARCELS_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case LOAD_PARCELS:
+      return {
+        ...state,
+        parcels: action.payload,
+        isLoading: false,
+      };
+
+    default:
+      return state;
+  }
 }
