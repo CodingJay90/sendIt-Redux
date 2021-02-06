@@ -6,7 +6,7 @@ import {
 } from "./actionTypes";
 
 export const registerUser = (user) => (dispatch) => {
-  //   dispatch(setItemsLoading());
+  dispatch(setItemsLoading());
   fetch("https://sendit-parcel.herokuapp.com/auth/register", {
     method: "POST",
     body: JSON.stringify(user),
@@ -30,7 +30,7 @@ export const loginUser = (user) => (dispatch) => {
   dispatch(setItemsLoading());
   fetch("https://sendit-parcel.herokuapp.com/auth/login", {
     method: "POST",
-    body: user,
+    body: JSON.stringify(user),
     headers: {
       "Content-type": "Application/json",
     },
@@ -38,8 +38,13 @@ export const loginUser = (user) => (dispatch) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      dispatch({ type: LOGIN_USER, payload: data });
-    });
+      if (!data.success === false) {
+        dispatch({ type: LOGIN_USER, payload: data });
+      } else {
+        dispatch({ type: AUTH_ERROR, payload: data });
+      }
+    })
+    .catch((err) => console.log(err));
 };
 
 export const setItemsLoading = () => {

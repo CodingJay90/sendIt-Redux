@@ -24,7 +24,6 @@ export default function (state = initialState, action) {
         isLoading: true,
       };
     case REGISTER_USER:
-    case LOGIN_USER:
       localStorage.setItem("token", action.paylaod.token);
       return {
         ...state,
@@ -36,11 +35,21 @@ export default function (state = initialState, action) {
         isLoading: false,
         msg: action.payload.msg,
       };
+    case LOGIN_USER:
+      localStorage.setItem("token", action.payload.token);
+      return {
+        ...state,
+        token: action.payload.token,
+        msg: action.payload.msg,
+        success: true,
+        msg: action.payload.msg,
+      };
     case AUTH_ERROR:
       return {
         ...state,
         errors: action.payload.errors,
         success: false,
+        msg: action.payload.msg ?? action.payload.message,
       };
 
     default:
