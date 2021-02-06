@@ -1,5 +1,6 @@
 import {
   AUTH_ERROR,
+  CLEAR_ERRORS,
   FETCH_LOADING,
   LOGIN_USER,
   REGISTER_USER,
@@ -24,7 +25,7 @@ export default function (state = initialState, action) {
         isLoading: true,
       };
     case REGISTER_USER:
-      localStorage.setItem("token", action.paylaod.token);
+      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         isAuthenticated: true,
@@ -39,6 +40,7 @@ export default function (state = initialState, action) {
       localStorage.setItem("token", action.payload.token);
       return {
         ...state,
+        isAuthenticated: true,
         token: action.payload.token,
         msg: action.payload.msg,
         success: true,
@@ -46,13 +48,20 @@ export default function (state = initialState, action) {
         isLoading: false,
       };
     case AUTH_ERROR:
+      localStorage.removeItem("token");
       return {
         ...state,
         errors: action.payload.errors,
         success: false,
-        msg: action.payload.msg ?? action.payload.message,
+        msg: action.payload.msg ? action.payload.message : action.payload,
       };
-
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: null,
+        msg: "",
+        isLoading: false,
+      };
     default:
       return state;
   }

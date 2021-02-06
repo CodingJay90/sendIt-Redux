@@ -3,6 +3,7 @@ import {
   REGISTER_USER,
   LOGIN_USER,
   AUTH_ERROR,
+  CLEAR_ERRORS,
 } from "./actionTypes";
 
 export const registerUser = (user) => (dispatch) => {
@@ -45,6 +46,10 @@ export const loginUser = (user) => (dispatch) => {
       }
     })
     .catch((err) => console.log(err));
+};
+
+export const clearErrors = () => {
+  return { type: CLEAR_ERRORS };
 };
 
 export const setItemsLoading = () => {

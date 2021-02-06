@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { loginUser } from "../../redux/actions/authActions";
+import { clearErrors, loginUser } from "../../redux/actions/authActions";
 import LoadingButton from "../common/LoadingButton";
 import "./Auth.css";
 
 const Login = (props) => {
-  const { loginUser, msg, isLoading } = props;
+  const {
+    loginUser,
+    msg,
+    isLoading,
+    clearErrors,
+    isAuthenticated,
+    success,
+  } = props;
   toast.configure();
 
   const [values, setValues] = useState({
@@ -25,18 +32,32 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser(body);
+
+    setTimeout(() => {
+      clearErrors();
+    }, 3000);
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/userDashBoard");
+      toast.info("Login Successful");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div>
       <div className="form">
         <h1>Log in</h1>
-        {msg !== "" && toast.error(msg)}
+        {msg !== "" && !isAuthenticated && toast.error(msg.message || msg)}
         <div className="layer">
           <form
             onSubmit={handleSubmit}
             style={{
-              boxShadow: msg !== "" && " 0 0 10px rgba(196, 12, 12, 0.5)",
+              boxShadow:
+                msg !== "" &&
+                success === false &&
+                " 0 0 10px rgba(196, 12, 12, 0.5)",
             }}
           >
             <label htmlFor="email">Email</label>
@@ -53,7 +74,6 @@ const Login = (props) => {
               placeholder="Enter password"
               onChange={onChange}
             />
-            {/* <LoadingButton /> */}
             {isLoading ? (
               <LoadingButton />
             ) : (
@@ -73,17 +93,16 @@ const Login = (props) => {
 function mapStateToProps(state) {
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    token: state.auth.token,
     currentUser: state.auth.currentUser,
     isLoading: state.auth.isLoading,
     success: state.auth.success,
-    userInfo: state.auth.userInfo,
     msg: state.auth.msg,
   };
 }
 
 const mapDispatchToProps = {
   loginUser,
+  clearErrors,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

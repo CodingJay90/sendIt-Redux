@@ -5,10 +5,19 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Auth.css";
 import { connect, useDispatch } from "react-redux";
-import { registerUser } from "../../redux/actions/authActions";
+import { clearErrors, registerUser } from "../../redux/actions/authActions";
+import LoadingButton from "../common/LoadingButton";
 
 const Register = (props) => {
-  const { registerUser, errors, isLoading } = props;
+  const {
+    registerUser,
+    errors,
+    isLoading,
+    msg,
+    success,
+    clearErrors,
+    isAuthenticated,
+  } = props;
   const dispatch = useDispatch();
   console.log(errors);
   toast.configure();
@@ -36,7 +45,18 @@ const Register = (props) => {
     console.log(values);
     e.preventDefault();
     registerUser(body);
+
+    setTimeout(() => {
+      clearErrors();
+    }, 3000);
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/userDashBoard");
+      toast.info("Sign Up Successful");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div>
@@ -50,7 +70,10 @@ const Register = (props) => {
           <form
             onSubmit={handleSubmit}
             style={{
-              boxShadow: errors && " 0 0 10px rgba(196, 12, 12, 0.5)",
+              boxShadow:
+                msg !== "" &&
+                success === false &&
+                " 0 0 10px rgba(196, 12, 12, 0.5)",
             }}
           >
             <label htmlFor="first_name">First Name</label>
@@ -88,7 +111,11 @@ const Register = (props) => {
               placeholder="Enter password"
               onChange={onChange}
             />
-            <button className="submit-btn">Submit</button>
+            {isLoading ? (
+              <LoadingButton />
+            ) : (
+              <button className="submit-btn">Submit</button>
+            )}
             <p>
               Already had an account ? <Link to="/login">Log in</Link>
             </p>
@@ -114,6 +141,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   registerUser,
+  clearErrors,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
