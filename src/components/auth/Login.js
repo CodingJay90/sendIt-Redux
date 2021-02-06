@@ -8,7 +8,7 @@ import { loginUser } from "../../redux/actions/authActions";
 import "./Auth.css";
 
 const Login = (props) => {
-  const { loginUser } = props;
+  const { loginUser, msg } = props;
   toast.configure();
 
   const [values, setValues] = useState({
@@ -24,15 +24,20 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser(body);
-    console.log(body);
   };
 
   return (
     <div>
       <div className="form">
         <h1>Log in</h1>
+        {msg !== "" && toast.error(msg)}
         <div className="layer">
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              boxShadow: msg !== "" && " 0 0 10px rgba(196, 12, 12, 0.5)",
+            }}
+          >
             <label htmlFor="email">Email</label>
             <input
               type="text"

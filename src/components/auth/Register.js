@@ -38,13 +38,6 @@ const Register = (props) => {
     registerUser(body);
   };
 
-  //   useEffect(() => {
-  //     errors &&
-  //       errors.map((error) => {
-  //         return toast.error(error.msg);
-  //       });
-  //   }, [errors]);
-
   return (
     <div>
       <div className="form">
@@ -54,7 +47,12 @@ const Register = (props) => {
             toast.error(error.msg);
           })}
         <div className="layer">
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              boxShadow: errors && " 0 0 10px rgba(196, 12, 12, 0.5)",
+            }}
+          >
             <label htmlFor="first_name">First Name</label>
             <input
               type="text"
