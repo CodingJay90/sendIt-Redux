@@ -36,13 +36,15 @@ header nav {
   justify-content: space-between;
 }
 
-header nav a {
+header nav a,
+span {
   color: #fff;
   display: block;
   text-decoration: none;
   font-size: 1.5em;
   margin: 25px 20px 25px 75px;
   font-weight: 300;
+  cursor: pointer;
 }
 
 header nav ul {

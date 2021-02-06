@@ -4,6 +4,7 @@ import {
   LOGIN_USER,
   AUTH_ERROR,
   CLEAR_ERRORS,
+  LOAD_USER,
 } from "./actionTypes";
 
 export const registerUser = (user) => (dispatch) => {
@@ -46,6 +47,21 @@ export const loginUser = (user) => (dispatch) => {
       }
     })
     .catch((err) => console.log(err));
+};
+
+export const loadUser = () => (dispatch, getState) => {
+  fetch("https://sendit-parcel.herokuapp.com/auth/user", {
+    method: "GET",
+    headers: {
+      "Content-type": "Apllication/json",
+      "x-access-token": getState().auth.token,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      dispatch({ type: LOAD_USER, payload: data });
+    });
 };
 
 export const clearErrors = () => {
