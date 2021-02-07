@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   toast.configure();
-  const activeStyle = { borderBottom: " 5px solid rgba(255, 255, 255, 0.2)" };
+  const activestyle = { borderBottom: " 5px solid rgba(255, 255, 255, 0.2)" };
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const currentUser = useSelector((state) => state.auth.currentUser);
   const history = useHistory();
@@ -27,7 +27,7 @@ const Navbar = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to="/" exact activeStyle={activeStyle} className="brand">
+              <NavLink to="/" exact activestyle={activestyle} className="brand">
                 {" "}
                 SendIt
               </NavLink>
@@ -38,7 +38,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/register"
-                  activeStyle={activeStyle}
+                  activestyle={activestyle}
                   className="auth"
                 >
                   {" "}
@@ -46,7 +46,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li onClick={logout}>
-                <span type="button" activeStyle={activeStyle} className="auth">
+                <span type="button" activestyle={activestyle} className="auth">
                   Logout
                 </span>
               </li>
@@ -56,7 +56,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/register"
-                  activeStyle={activeStyle}
+                  activestyle={activestyle}
                   className="auth"
                 >
                   {" "}
@@ -64,7 +64,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/login" activeStyle={activeStyle} className="auth">
+                <NavLink to="/login" activestyle={activestyle} className="auth">
                   Login
                 </NavLink>
               </li>

@@ -1,7 +1,7 @@
 import { LOAD_PARCELS, PARCELS_LOADING } from "./actionTypes";
 
 export const loadParcels = () => (dispatch, getState) => {
-  const userId = getState().auth.userInfo.id;
+  const userId = getState().auth.userInfo && getState().auth.userInfo.id; //check if userdata is loaded
   dispatch(setParcelLoading());
   fetch(`https://sendit-parcel.herokuapp.com/parcels/${userId}`, {
     headers: {

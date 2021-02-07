@@ -10,8 +10,9 @@ import Orderstable from "./Orderstable";
 const UserDashBoard = () => {
   toast.configure();
   const dispatch = useDispatch();
-  const parcels = useSelector((state) => state.parcels.parcels);
+  let parcels = useSelector((state) => state.parcels.parcels);
   const isLoading = useSelector((state) => state.parcels.isLoading);
+  console.log(parcels);
 
   useEffect(() => {
     dispatch(loadParcels());

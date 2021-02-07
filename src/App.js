@@ -10,6 +10,7 @@ import { loadUser } from "./redux/actions/authActions";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { loadParcels } from "./redux/actions/parcelActions";
 
 function App() {
   toast.configure();
@@ -19,6 +20,7 @@ function App() {
 
   useEffect(() => {
     dispatch(loadUser());
+    dispatch(loadParcels());
   }, [isAuthenticated]);
 
   return (

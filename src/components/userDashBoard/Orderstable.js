@@ -9,8 +9,8 @@ const Orderstable = ({ isLoading, parcels }) => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div class="table-wrapper">
-          <table class="fl-table">
+        <div className="table-wrapper">
+          <table className="fl-table">
             <thead>
               <tr>
                 <th>Parcel Id</th>
@@ -23,11 +23,11 @@ const Orderstable = ({ isLoading, parcels }) => {
               </tr>
             </thead>
             <tbody>
-              {parcels != null
+              {parcels != null && !isLoading && !parcels.msg
                 ? parcels.map((item) => {
                     return (
-                      <>
-                        <tr>
+                      <React.Fragment key={item.id}>
+                        <tr key={item.id}>
                           <td>{item.id}</td>
                           <td>{item.recipient_name}</td>
                           <td>{item.recipient_phone_no}</td>
@@ -45,7 +45,7 @@ const Orderstable = ({ isLoading, parcels }) => {
                             </span>
                           </td>
                         </tr>
-                      </>
+                      </React.Fragment>
                     );
                   })
                 : " You have no delivery order yet"}
