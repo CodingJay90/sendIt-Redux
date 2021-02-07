@@ -56,20 +56,20 @@ h2 {
 
 @media screen and (min-width: 850px) {
   .fl-table td {
-    padding: 1rem;
+    padding: 0.7rem;
   }
 
   .fl-table thead th {
-    padding: 1rem;
+    padding: 0.7rem;
   }
 }
 @media screen and (min-width: 1008px) {
   .fl-table td {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .fl-table thead th {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 }
 
@@ -119,7 +119,7 @@ h2 {
     height: 60px;
     vertical-align: middle;
     box-sizing: border-box;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     overflow-y: auto;
     width: 120px;
     font-size: 13px;
@@ -149,4 +149,16 @@ h2 {
     display: block;
     text-align: center;
   }
+}
+
+table button,
+a {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #324960;
+  font-size: 14px;
+  margin-right: 22px;
+  letter-spacing: 3px;
 }

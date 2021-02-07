@@ -33,6 +33,12 @@ const Orderstable = ({ isLoading, parcels }) => {
                           <td>{item.pickup_location}</td>
                           <td>{item.destination}</td>
                           <td>{item.status}</td>
+                          <td>
+                            <span className="function-btn">
+                              <button className="edit">Edit</button>
+                              <a className="cancel">Cancel</a>
+                            </span>
+                          </td>
                         </tr>
                       </>
                     );
