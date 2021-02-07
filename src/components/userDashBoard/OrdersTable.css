@@ -32,7 +32,7 @@ h2 {
   border-collapse: collapse;
   width: 100%;
   max-width: 100%;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   background-color: white;
 }
 
@@ -165,4 +165,13 @@ a {
 
 table a:hover {
   text-decoration: underline;
+}
+
+.emptyOrders {
+  font-size: 2.2em;
+  padding: 3em;
+  text-align: center;
+  letter-spacing: 4px;
+  color: red;
+  text-shadow: 1px 1px 8px rgba(173, 90, 70, 0.89);
 }

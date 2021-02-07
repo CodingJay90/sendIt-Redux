@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loadParcels } from "./redux/actions/parcelActions";
+import CreateParcel from "./components/parcel/CreateParcel";
 
 function App() {
   toast.configure();
@@ -46,6 +47,7 @@ function App() {
         </Route>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        <Route path="/createParcel" component={CreateParcel} />
       </Switch>
     </div>
   );

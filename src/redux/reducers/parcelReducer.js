@@ -1,7 +1,7 @@
 import { LOAD_PARCELS, PARCELS_LOADING } from "../actions/actionTypes";
 
 const initialState = {
-  parcels: null,
+  parcels: [],
   isLoading: false,
 };
 

@@ -10,21 +10,28 @@ const Orderstable = ({ isLoading, parcels }) => {
         <Spinner />
       ) : (
         <div className="table-wrapper">
-          <table className="fl-table">
-            <thead>
-              <tr>
-                <th>Parcel Id</th>
-                <th>Recipient Name</th>
-                <th>Recipient Mobile No</th>
-                <th>Pickup Location</th>
-                <th>Destination</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {parcels != null && !isLoading && !parcels.msg
-                ? parcels.map((item) => {
+          {/* CHECK IF PARCEL IS LOADED AND NOT EMPTY */}
+          {parcels != null && !isLoading && parcels.msg ? (
+            <h1 className="emptyOrders">{parcels.msg}!</h1>
+          ) : (
+            <table className="fl-table">
+              <thead>
+                <tr>
+                  <th>Parcel Id</th>
+                  <th>Recipient Name</th>
+                  <th>Recipient Mobile No</th>
+                  <th>Pickup Location</th>
+                  <th>Destination</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* {CHECK IF PARCEL IS LOADED} */}
+                {parcels != null &&
+                  !isLoading &&
+                  !parcels.msg &&
+                  parcels.map((item) => {
                     return (
                       <React.Fragment key={item.id}>
                         <tr key={item.id}>
@@ -47,10 +54,10 @@ const Orderstable = ({ isLoading, parcels }) => {
                         </tr>
                       </React.Fragment>
                     );
-                  })
-                : " You have no delivery order yet"}
-            </tbody>
-          </table>
+                  })}
+              </tbody>
+            </table>
+          )}
         </div>
       )}
     </div>
