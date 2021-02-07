@@ -162,3 +162,7 @@ a {
   margin-right: 22px;
   letter-spacing: 3px;
 }
+
+table a:hover {
+  text-decoration: underline;
+}

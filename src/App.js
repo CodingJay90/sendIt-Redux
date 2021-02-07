@@ -15,6 +15,7 @@ function App() {
   toast.configure();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     dispatch(loadUser());
@@ -25,10 +26,10 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route
+        {/* <Route
           path="/userDashboard"
           render={() => {
-            if (!isAuthenticated) {
+            if (!isAuthenticated && !token) {
               toast.error(
                 "You are not authenticated, you need to be logged in to viiew this page"
               );
@@ -37,7 +38,10 @@ function App() {
               }, 2000);
             } else return <UserDashBoard />;
           }}
-        />
+        /> */}
+        <Route path="/userDashboard">
+          {!token ? <Redirect to="/login" /> : <UserDashBoard />}
+        </Route>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
       </Switch>

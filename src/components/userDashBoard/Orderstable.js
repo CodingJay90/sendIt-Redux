@@ -1,6 +1,7 @@
 import React from "react";
 import "./OrdersTable.css";
 import Spinner from "../common/Spinner";
+import { Link } from "react-router-dom";
 
 const Orderstable = ({ isLoading, parcels }) => {
   return (
@@ -35,8 +36,12 @@ const Orderstable = ({ isLoading, parcels }) => {
                           <td>{item.status}</td>
                           <td>
                             <span className="function-btn">
-                              <button className="edit">Edit</button>
-                              <a className="cancel">Cancel</a>
+                              {item.status !== "cancelled" && (
+                                <button className="edit">Edit</button>
+                              )}
+                              <Link to="/editParcel" className="cancel">
+                                Cancel
+                              </Link>
                             </span>
                           </td>
                         </tr>
