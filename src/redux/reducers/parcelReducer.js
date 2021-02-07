@@ -31,7 +31,10 @@ export default function (state = initialState, action) {
     case CREATE_PARCEL:
       return {
         ...state,
-        parcels: [...state.parcels, action.payload],
+        parcels: state.parcels.parcel && [
+          ...state.parcels,
+          action.payload.parcel,
+        ], //check if user has any parcel to prevent errors in react
         isLoading: false,
         success: action.payload.success ? true : false,
         errors: action.payload.errors ? action.payload : null,
@@ -55,7 +58,11 @@ export default function (state = initialState, action) {
         ...state,
         errors: null,
         isLoading: false,
-        parcels: [...state.parcels, { ...state.parcels, errors: null }],
+        success: null,
+        parcels: state.parcels && [
+          ...state.parcels,
+          { ...state.parcels, errors: null },
+        ],
       };
 
     default:

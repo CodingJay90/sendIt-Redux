@@ -23,7 +23,7 @@ export const loadParcels = () => (dispatch, getState) => {
 };
 
 export const createParcel = (parcel) => (dispatch, getState) => {
-  dispatch(setParcelLoading());
+  // dispatch(setParcelLoading());
   fetch("https://sendit-parcel.herokuapp.com/parcels", {
     method: "POST",
     body: JSON.stringify(parcel),
