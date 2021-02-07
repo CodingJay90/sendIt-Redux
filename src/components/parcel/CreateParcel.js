@@ -1,24 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./CreateParcel.css";
+import "../auth/Auth.css";
+import { useDispatch, useSelector } from "react-redux";
+import LoadingButton from "../common/LoadingButton";
+import { clearErrors, createParcel } from "../../redux/actions/parcelActions";
 
 const CreateParcel = () => {
   toast.configure();
   const history = useHistory();
-  const user_id = localStorage.getItem("currentUserId");
-  const [value, setValue] = useState({
+  let user_id = useSelector(
+    (state) => state.auth.userInfo && state.auth.userInfo.id
+  );
+  let [value, setValue] = useState({
     recipient_name: "",
     recipient_phone_no: "",
     destination: "",
     pickup_location: "",
+    user_id,
   });
+  const isLoading = useSelector((state) => state.parcels.isLoading);
+  const success = useSelector((state) => state.parcels.success);
+  const errors = useSelector(
+    (state) => state.parcels.errors && state.parcels.errors.errors
+  );
+  const dispatch = useDispatch();
+  console.log(success);
+
   const onChange = (e) =>
     setValue({ ...value, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    value.user_id = user_id;
+    dispatch(createParcel(value));
+  };
+
+  useEffect(() => {
+    dispatch(clearErrors());
+    if (success) {
+      toast.success("parcels created");
+      setTimeout(() => {
+        history.push("/userDashboard");
+      }, 2000);
+    }
+  }, [errors, success]);
+
   return (
     <div className="Create">
       <div class="form">
+        {errors !== null &&
+          errors.length &&
+          errors.map((error) => {
+            toast.error(error.msg);
+            console.log(error);
+          })}
         <h1>Create Order</h1>
         <form onSubmit={handleSubmit}>
           <label for="pickup_location">Pickup Location</label>
@@ -49,7 +87,11 @@ const CreateParcel = () => {
             placeholder="Recipient Mobile number"
             onChange={onChange}
           />
-          <button>Submit</button>
+          {isLoading ? (
+            <LoadingButton />
+          ) : (
+            <button className="submit-btn">Submit</button>
+          )}
         </form>
       </div>
     </div>

@@ -4,6 +4,7 @@ import {
   PARCELS_LOADING,
   EDIT_PICKUP_DESTINATION,
   CANCEL_DELIVERY,
+  CLEAR_ERRORS,
 } from "./actionTypes";
 
 export const loadParcels = () => (dispatch, getState) => {
@@ -28,7 +29,7 @@ export const createParcel = (parcel) => (dispatch, getState) => {
     body: JSON.stringify(parcel),
     headers: {
       "Content-type": "Application/json",
-      "x-access-token": getState.auth.token,
+      "x-access-token": getState().auth.token,
     },
   })
     .then((res) => res.json())
@@ -76,6 +77,10 @@ export const cancelDelivery = (id) => (dispatch, getState) => {
       console.log(data);
       dispatch({ type: CANCEL_DELIVERY, payload: data });
     });
+};
+
+export const clearErrors = () => {
+  return { type: CLEAR_ERRORS };
 };
 
 export const setParcelLoading = () => {

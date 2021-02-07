@@ -1,5 +1,6 @@
 import {
   CANCEL_DELIVERY,
+  CLEAR_ERRORS,
   CREATE_PARCEL,
   EDIT_PICKUP_DESTINATION,
   LOAD_PARCELS,
@@ -10,6 +11,8 @@ const initialState = {
   parcels: [],
   isLoading: false,
   response: null,
+  success: null,
+  errors: null,
 };
 
 export default function (state = initialState, action) {
@@ -30,6 +33,8 @@ export default function (state = initialState, action) {
         ...state,
         parcels: [...state.parcels, action.payload],
         isLoading: false,
+        success: action.payload.success ? true : false,
+        errors: action.payload.errors ? action.payload : null,
       };
     case EDIT_PICKUP_DESTINATION:
       return {
@@ -44,6 +49,13 @@ export default function (state = initialState, action) {
         ...state,
         response: action.payload,
         isLoading: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: null,
+        isLoading: false,
+        parcels: [...state.parcels, { ...state.parcels, errors: null }],
       };
 
     default:

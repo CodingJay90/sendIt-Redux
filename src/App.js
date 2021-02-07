@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     dispatch(loadUser());
-    dispatch(loadParcels());
+    // dispatch(loadParcels());
   }, [isAuthenticated]);
 
   return (
