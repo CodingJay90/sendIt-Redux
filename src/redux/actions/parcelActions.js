@@ -3,6 +3,7 @@ import {
   LOAD_PARCELS,
   PARCELS_LOADING,
   EDIT_PICKUP_DESTINATION,
+  CANCEL_DELIVERY,
 } from "./actionTypes";
 
 export const loadParcels = () => (dispatch, getState) => {
@@ -21,6 +22,7 @@ export const loadParcels = () => (dispatch, getState) => {
 };
 
 export const createParcel = (parcel) => (dispatch, getState) => {
+  dispatch(setParcelLoading());
   fetch("https://sendit-parcel.herokuapp.com/parcels", {
     method: "POST",
     body: JSON.stringify(parcel),
@@ -37,8 +39,8 @@ export const createParcel = (parcel) => (dispatch, getState) => {
 };
 
 export const editPickUpDestination = (parcel) => (dispatch, getState) => {
-  const parcel_id = getState().auth.userInfo && getState().parcels.parcels.id; //check if userdata is loaded
-
+  const parcel_id = getState().parcels.parcels && getState().parcels.parcels.id; //check if userdata is loaded
+  dispatch(setParcelLoading());
   fetch(
     `https://sendit-parcel.herokuapp.com/parcels/${parcel_id}/destination`,
     {
@@ -52,7 +54,27 @@ export const editPickUpDestination = (parcel) => (dispatch, getState) => {
   )
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       dispatch({ type: EDIT_PICKUP_DESTINATION, payload: data });
+    });
+};
+
+export const cancelDelivery = (id) => (dispatch, getState) => {
+  dispatch(setParcelLoading());
+  const user_id = getState().auth.userInfo && getState().auth.userInfo.id;
+
+  fetch(`https://sendit-parcel.herokuapp.com/parcels/${id}/cancel`, {
+    method: "PUT",
+    body: JSON.stringify(user_id),
+    headers: {
+      "Content-type": "application/json",
+      "x-access-token": localStorage.getItem("token"),
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      dispatch({ type: CANCEL_DELIVERY, payload: data });
     });
 };
 
