@@ -1,8 +1,8 @@
-/* .container {
+.container {
   width: 85%;
   margin: auto;
 }
-
+/* 
 .orders-layer {
   background-position: center;
   background-size: cover;
@@ -64,7 +64,7 @@
 
 .details {
   margin: 2rem;
-}
+} */
 
 .hero {
   display: flex;
@@ -123,4 +123,4 @@
     position: static;
     margin-left: 2rem;
   }
-} */
+}

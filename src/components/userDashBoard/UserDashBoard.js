@@ -5,8 +5,7 @@ import "./UserDashBoard.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loadParcels } from "../../redux/actions/parcelActions";
-import Spinner from "../common/Spinner";
-import Orders from "./Orders";
+import Orderstable from "./Orderstable";
 
 const UserDashBoard = () => {
   toast.configure();
@@ -32,47 +31,7 @@ const UserDashBoard = () => {
           <div></div>
         </div>
         <h2>Orders</h2>
-        <div>
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            <div className="orders-layer">
-              <div className="orders">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Parcel Id</th>
-                      <th>Recipient Name</th>
-                      <th>Recipient Mobile No</th>
-                      <th>Pickup Location</th>
-                      <th>Destination</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {parcels != null
-                      ? parcels.map((item) => {
-                          return (
-                            <>
-                              <tr>
-                                <td>{item.id}</td>
-                                <td>{item.recipient_name}</td>
-                                <td>{item.recipient_phone_no}</td>
-                                <td>{item.pickup_location}</td>
-                                <td>{item.destination}</td>
-                                <td>{item.status}</td>
-                              </tr>
-                            </>
-                          );
-                        })
-                      : " You have no delivery order yet"}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
-        </div>
+        <Orderstable isLoading={isLoading} parcels={parcels} />
       </div>
     </>
   );
