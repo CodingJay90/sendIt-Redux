@@ -161,6 +161,7 @@ a {
   font-size: 14px;
   margin-right: 22px;
   letter-spacing: 3px;
+  cursor: pointer;
 }
 
 table a:hover {

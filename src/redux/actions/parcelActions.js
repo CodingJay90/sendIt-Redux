@@ -69,7 +69,7 @@ export const cancelDelivery = (id) => (dispatch, getState) => {
 
   fetch(`https://sendit-parcel.herokuapp.com/parcels/${id}/cancel`, {
     method: "PUT",
-    body: JSON.stringify(user_id),
+    body: JSON.stringify({ user_id }),
     headers: {
       "Content-type": "application/json",
       "x-access-token": localStorage.getItem("token"),

@@ -2,8 +2,14 @@ import React from "react";
 import "./OrdersTable.css";
 import Spinner from "../common/Spinner";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { cancelDelivery } from "../../redux/actions/parcelActions";
 
 const Orderstable = ({ isLoading, parcels }) => {
+  const dispatch = useDispatch();
+  const cancelParcel = (id) => {
+    dispatch(cancelDelivery(id));
+  };
   return (
     <div>
       {isLoading ? (
@@ -42,11 +48,12 @@ const Orderstable = ({ isLoading, parcels }) => {
                           <td>{item.destination}</td>
                           <td>{item.status}</td>
                           <td>
-                            <span className="function-btn">
-                              {item.status !== "cancelled" && (
-                                // <Link to="/editParcel" className="edit">
-                                //   Edit
-                                // </Link>
+                            {item.status !== "cancelled" && (
+                              <span className="function-btn">
+                                {/* //{" "}
+                                <Link to="/editParcel" className="edit">
+                                  // Edit //{" "}
+                                </Link> */}
                                 <Link
                                   to={{
                                     pathname: "/editDestination",
@@ -55,9 +62,14 @@ const Orderstable = ({ isLoading, parcels }) => {
                                 >
                                   Edit
                                 </Link>
-                              )}
-                              <button className="cancel">Cancel</button>
-                            </span>
+                                <button
+                                  onClick={() => cancelParcel(item.id)}
+                                  className="cancel"
+                                >
+                                  Cancel
+                                </button>
+                              </span>
+                            )}
                           </td>
                         </tr>
                       </React.Fragment>
