@@ -44,11 +44,19 @@ const Orderstable = ({ isLoading, parcels }) => {
                           <td>
                             <span className="function-btn">
                               {item.status !== "cancelled" && (
-                                <button className="edit">Edit</button>
+                                // <Link to="/editParcel" className="edit">
+                                //   Edit
+                                // </Link>
+                                <Link
+                                  to={{
+                                    pathname: "/editDestination",
+                                    state: item,
+                                  }}
+                                >
+                                  Edit
+                                </Link>
                               )}
-                              <Link to="/editParcel" className="cancel">
-                                Cancel
-                              </Link>
+                              <button className="cancel">Cancel</button>
                             </span>
                           </td>
                         </tr>

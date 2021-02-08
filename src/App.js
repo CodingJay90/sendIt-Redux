@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loadParcels } from "./redux/actions/parcelActions";
 import CreateParcel from "./components/parcel/CreateParcel";
+import EditPickupDestination from "./components/parcel/EditPickupDestination";
 
 function App() {
   toast.configure();
@@ -48,6 +49,7 @@ function App() {
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/createParcel" component={CreateParcel} />
+        <Route path="/editDestination" component={EditPickupDestination} />
       </Switch>
     </div>
   );

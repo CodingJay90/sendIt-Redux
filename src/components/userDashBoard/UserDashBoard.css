@@ -91,7 +91,7 @@
 .hero a {
   margin: 4rem 0;
   background: linear-gradient(to right, #000046, #1cb5e0);
-  background: linear-gradient(to right, #fe8c00, #f83600);
+  /* background: linear-gradient(to right, #fe8c00, #f83600); */
   width: 40%;
   display: block;
   text-align: center;
@@ -101,10 +101,12 @@
   padding: 1rem;
   border-radius: 5px;
   color: #fff;
+  transition: 500ms linear;
 }
 
 .hero a:hover {
-  background: linear-gradient(to left, #fe8c00, #f83600);
+  background: linear-gradient(to right, #c06b04, #a32401);
+  background: linear-gradient(to right, #000022, #03637e);
 }
 
 @media screen and (max-width: 926px) {

@@ -43,6 +43,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isLoading: false,
+        success: action.payload.success ? true : false,
         parcels: state.parcels.map((parcel) =>
           parcel.id === action.payload.id ? action.payload : parcel
         ),

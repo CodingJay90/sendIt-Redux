@@ -39,8 +39,11 @@ export const createParcel = (parcel) => (dispatch, getState) => {
     });
 };
 
-export const editPickUpDestination = (parcel) => (dispatch, getState) => {
-  const parcel_id = getState().parcels.parcels && getState().parcels.parcels.id; //check if userdata is loaded
+export const editPickUpDestination = (parcel, parcel_id) => (
+  dispatch,
+  getState
+) => {
+  // const parcel_id = getState().parcels.parcels && getState().parcels.parcels.id; //check if userdata is loaded
   dispatch(setParcelLoading());
   fetch(
     `https://sendit-parcel.herokuapp.com/parcels/${parcel_id}/destination`,
