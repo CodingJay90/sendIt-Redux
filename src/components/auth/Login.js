@@ -42,6 +42,7 @@ const Login = (props) => {
     if (isAuthenticated) {
       history.push("/userDashBoard");
       toast.info("Login Successful");
+      window.location.reload();
     }
   }, [isAuthenticated]);
 
