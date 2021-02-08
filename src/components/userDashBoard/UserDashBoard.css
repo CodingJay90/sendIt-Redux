@@ -82,8 +82,11 @@
 .container h2 {
   font-size: 28px;
   font-weight: 400;
-  margin-left: 2rem;
-  width: 38%;
+  /* margin-left: 2rem; */
+  margin-left: 4.2rem;
+  /* width: 38%; */
+  width: fit-content;
+  letter-spacing: 7px;
   padding-bottom: 1rem;
   border-bottom: 1px solid red;
 }

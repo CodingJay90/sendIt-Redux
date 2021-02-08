@@ -40,6 +40,10 @@ h2 {
 .fl-table th {
   text-align: center;
   padding: 8px;
+  /* new */
+  box-sizing: border-box;
+  font-size: 1.2em;
+  font-weight: 300;
 }
 
 .fl-table td {
@@ -158,14 +162,29 @@ a {
   border: none;
   background: transparent;
   color: #324960;
+  color: #f51212;
   font-size: 14px;
   margin-right: 22px;
   letter-spacing: 3px;
   cursor: pointer;
 }
 
+table button {
+  color: #324960;
+  border: 1px solid #324960;
+  padding: 0.3rem;
+  border-radius: 10px;
+  letter-spacing: 2px;
+  transition: 200ms ease-in;
+}
+
 table a:hover {
   text-decoration: underline;
+}
+
+table button:hover {
+  background: #324960;
+  color: #fff;
 }
 
 .emptyOrders {

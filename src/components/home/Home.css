@@ -113,7 +113,7 @@ a {
   color: #fff;
   border: 2px solid #fff;
   letter-spacing: 4px;
-  transition: background 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
+  transition: 0.3s ease-in-out;
 }
 
 .btn-default:hover {
