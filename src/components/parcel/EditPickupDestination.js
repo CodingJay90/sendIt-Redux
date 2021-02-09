@@ -50,24 +50,26 @@ const EditPickupDestination = (props) => {
   return (
     <div className="Create">
       <div class="form">
-        {errors !== null &&
-          errors.length &&
-          errors.map((error) => {
-            toast.error(error.msg);
-            console.log(error);
-          })}
-        <h1>Edit pickup Destination</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="destination">Pickup Destination</label>
-          <input
-            type="text"
-            name="destination"
-            placeholder="Update pick up destination"
-            onChange={(e) => setValue(e.target.value)}
-            value={value}
-          />
-          <button className="submit-btn">Update</button>
-        </form>
+        <div className="layer">
+          {errors !== null &&
+            errors.length &&
+            errors.map((error) => {
+              toast.error(error.msg);
+              console.log(error);
+            })}
+          <h1>Edit pickup Destination</h1>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="destination">Pickup Destination</label>
+            <input
+              type="text"
+              name="destination"
+              placeholder="Update pick up destination"
+              onChange={(e) => setValue(e.target.value)}
+              value={value}
+            />
+            <button className="submit-btn">Update</button>
+          </form>
+        </div>
       </div>
     </div>
   );

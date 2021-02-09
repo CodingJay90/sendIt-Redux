@@ -61,7 +61,7 @@ export default function (state = initialState, action) {
         isLoading: false,
         success: null,
         parcels: state.parcels && [
-          ...state.parcels,
+          // ...state.parcels,
           { ...state.parcels, errors: null },
         ],
       };

@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./OrdersTable.css";
 import Spinner from "../common/Spinner";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cancelDelivery } from "../../redux/actions/parcelActions";
+import "react-toastify/dist/ReactToastify.css";
+
+import { toast } from "react-toastify";
 
 const Orderstable = ({ isLoading, parcels }) => {
+  toast.configure();
+  const success = useSelector(
+    (state) => state.parcels.response !== null && state.parcels.response.success
+  );
+  console.log(success);
   const dispatch = useDispatch();
   const cancelParcel = (id) => {
     dispatch(cancelDelivery(id));
   };
+
+  useEffect(() => {
+    if (success) {
+      toast.success("parcel delivery cancelled");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2500);
+    }
+  }, [success]);
   return (
     <div>
       {isLoading ? (

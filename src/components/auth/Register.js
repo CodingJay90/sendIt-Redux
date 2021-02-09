@@ -48,13 +48,14 @@ const Register = (props) => {
 
     setTimeout(() => {
       clearErrors();
-    }, 3000);
+    }, 1000);
   };
 
   useEffect(() => {
     if (isAuthenticated) {
       history.push("/userDashBoard");
       toast.info("Sign Up Successful");
+      // window.location.reload();
     }
   }, [isAuthenticated]);
 

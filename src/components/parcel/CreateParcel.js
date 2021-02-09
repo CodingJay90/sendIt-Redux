@@ -51,48 +51,50 @@ const CreateParcel = () => {
   return (
     <div className="Create">
       <div class="form">
-        {errors !== null &&
-          errors.length &&
-          errors.map((error) => {
-            toast.error(error.msg);
-            console.log(error);
-          })}
-        <h1>Create Order</h1>
-        <form onSubmit={handleSubmit}>
-          <label for="pickup_location">Pickup Location</label>
-          <input
-            type="text"
-            name="pickup_location"
-            placeholder="Enter pickup location"
-            onChange={onChange}
-          />
-          <label for="destination">Destination</label>
-          <input
-            type="text"
-            name="destination"
-            placeholder="enter destination"
-            onChange={onChange}
-          />
-          <label for="recipient_name">Recipient Name</label>
-          <input
-            type="text"
-            name="recipient_name"
-            placeholder="Email recipient name"
-            onChange={onChange}
-          />
-          <label for="recipient_phone_no">Recipient Mobile no</label>
-          <input
-            type="text"
-            name="recipient_phone_no"
-            placeholder="Recipient Mobile number"
-            onChange={onChange}
-          />
-          {isLoading ? (
-            <LoadingButton />
-          ) : (
-            <button className="submit-btn">Submit</button>
-          )}
-        </form>
+        <div className="layer">
+          {errors !== null &&
+            errors.length &&
+            errors.map((error) => {
+              toast.error(error.msg);
+              console.log(error);
+            })}
+          <h1>Create Order</h1>
+          <form onSubmit={handleSubmit}>
+            <label for="pickup_location">Pickup Location</label>
+            <input
+              type="text"
+              name="pickup_location"
+              placeholder="Enter pickup location"
+              onChange={onChange}
+            />
+            <label for="destination">Destination</label>
+            <input
+              type="text"
+              name="destination"
+              placeholder="enter destination"
+              onChange={onChange}
+            />
+            <label for="recipient_name">Recipient Name</label>
+            <input
+              type="text"
+              name="recipient_name"
+              placeholder="Email recipient name"
+              onChange={onChange}
+            />
+            <label for="recipient_phone_no">Recipient Mobile no</label>
+            <input
+              type="text"
+              name="recipient_phone_no"
+              placeholder="Recipient Mobile number"
+              onChange={onChange}
+            />
+            {isLoading ? (
+              <LoadingButton />
+            ) : (
+              <button className="submit-btn">Submit</button>
+            )}
+          </form>
+        </div>
       </div>
     </div>
   );
