@@ -37,7 +37,7 @@ const Navbar = () => {
             <ul>
               <li>
                 <NavLink
-                  to="/register"
+                  to="/"
                   activestyle={activestyle}
                   className="auth"
                 >
